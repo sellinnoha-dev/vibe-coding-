@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ContactFormFunctional } from './ContactFormFunctional';
 
-export default function Contact() {
+export function Contact() {
   return (
     <section id="contact" className="py-20 px-6 bg-white dark:bg-slate-950">
       <div className="max-w-4xl mx-auto">
