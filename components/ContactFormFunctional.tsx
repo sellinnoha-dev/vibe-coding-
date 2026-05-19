@@ -144,7 +144,7 @@ export function ContactFormFunctional() {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         type="submit"
-        disabled={isSubmitting || !isInitialized}
+        disabled={isSubmitting}
         className="w-full px-8 py-4 bg-accent text-primary font-bold rounded-lg hover:bg-cyan-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? 'Sending...' : 'Send Message'}
