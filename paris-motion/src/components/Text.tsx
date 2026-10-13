@@ -16,7 +16,8 @@ export const SceneHeading: React.FC<{
   color?: string;
   x?: number;
   y?: number;
-}> = ({frame, start, end, kicker, lines, color = C.navy, x = 120, y = 104}) => {
+  kickerColor?: string;
+}> = ({frame, start, end, kicker, lines, color = C.navy, x = 120, y = 104, kickerColor = C.gold}) => {
   const out = prog(frame, end - 24, end);
   if (frame < start - 1 || frame > end + 1) return null;
   const bar = prog(frame, start, start + 22, easeOut);
@@ -31,7 +32,7 @@ export const SceneHeading: React.FC<{
       }}
     >
       <div style={{display: 'flex', alignItems: 'center', gap: 18, marginBottom: 18}}>
-        <div style={{width: 56 * bar, height: 2, background: C.gold}} />
+        <div style={{width: 56 * bar, height: 2, background: kickerColor}} />
         <div
           style={{
             fontFamily: FONT_TEXT,
@@ -39,7 +40,7 @@ export const SceneHeading: React.FC<{
             fontSize: 22,
             letterSpacing: 6,
             textTransform: 'uppercase',
-            color: C.gold,
+            color: kickerColor,
             opacity: prog(frame, start + 6, start + 24),
             transform: `translateX(${tween(frame, [start + 6, start + 30], [-14, 0], easeOut)}px)`,
           }}

@@ -9,9 +9,11 @@ Sorties :
   public/audio/sfx/chime.wav      petite cloche (apparition des monuments)
   public/audio/sfx/whoosh.wav     souffle doux (transitions)
 
-Usage : python3 scripts/generate_music.py
+Usage : python3 scripts/generate_music.py          (vidéo « Paris »)
+        python3 scripts/generate_music.py pont     (vidéo « Le pont des Arts » -> musique_pont.wav)
 """
 import os
+import sys
 import numpy as np
 from scipy.io import wavfile
 from scipy.signal import fftconvolve, butter, sosfilt
@@ -76,6 +78,27 @@ def add(buf, start_s, sig):
     j = min(len(buf), i + len(sig))
     buf[i:j] += sig[: j - i]
 
+
+VARIANT = sys.argv[1] if len(sys.argv) > 1 else 'paris'
+FINAL = [n('D', 4), n('A', 4), n('C#', 5), n('E', 5), n('F#', 5), n('A', 5)]
+if VARIANT == 'pont':
+    # Version plus romantique, en fa majeur, mêmes changements de scène.
+    CHORDS = [
+        (0.0, 6.0, n('F', 2), [n('F', 3), n('C', 4), n('E', 4), n('G', 4), n('A', 4)]),        # Fmaj9
+        (6.0, 11.5, n('D', 2), [n('D', 3), n('A', 3), n('C', 4), n('E', 4), n('F', 4)]),       # Dm9
+        (11.5, 17.0, n('A#', 1), [n('A#', 2), n('F', 3), n('A', 3), n('C', 4), n('D', 4)]),    # Bbmaj9
+        (17.0, 23.0, n('G', 1), [n('G', 2), n('D', 3), n('F', 3), n('A', 3), n('A#', 3)]),     # Gm9 (le drame)
+        (23.0, 26.0, n('C', 2), [n('C', 3), n('F', 3), n('G', 3), n('A#', 3), n('D', 4)]),     # C9sus4
+        (26.0, 29.0, n('C', 2), [n('C', 3), n('E', 3), n('G', 3), n('A#', 3), n('D', 4)]),     # C9
+        (29.0, 35.0, n('F', 2), [n('F', 3), n('C', 4), n('E', 4), n('G', 4), n('A', 4)]),      # Fmaj9 (les amoureux)
+        (35.0, 41.0, n('A', 1), [n('A', 2), n('E', 3), n('G', 3), n('C', 4), n('E', 4)]),      # Am7
+        (41.0, 46.5, n('A#', 1), [n('A#', 2), n('F', 3), n('A', 3), n('C', 4), n('D', 4)]),    # Bbmaj9
+        (46.5, 52.0, n('G', 1), [n('G', 2), n('D', 3), n('F', 3), n('A', 3), n('A#', 3)]),     # Gm9
+        (52.0, 54.5, n('A#', 1), [n('A#', 2), n('F', 3), n('A', 3), n('C', 4), n('D', 4)]),    # Bbmaj9
+        (54.5, 56.5, n('C', 2), [n('C', 3), n('E', 3), n('G', 3), n('A#', 3), n('D', 4)]),     # C9
+        (56.5, 60.0, n('F', 2), [n('F', 3), n('C', 4), n('E', 4), n('G', 4), n('A', 4)]),      # Fmaj9 (résolution)
+    ]
+    FINAL = [n('F', 4), n('C', 5), n('E', 5), n('G', 5), n('A', 5), n('C', 6)]
 
 # ---------------------------------------------------------------- Nappe (pad)
 def pad_note(freq, length_s, detune):
@@ -174,7 +197,7 @@ for (a, b, step, octv, vel) in SECTIONS:
         tt += step
 
 # Accord final arpégé lentement, qui résonne jusqu'au fondu.
-for i, m in enumerate([n('D', 4), n('A', 4), n('C#', 5), n('E', 5), n('F#', 5), n('A', 5)]):
+for i, m in enumerate(FINAL):
     sig = piano(midi(m), 4.5, 0.5)
     add(pianoL, 56.5 + i * 0.22, sig * 0.2 * (0.7 if i % 2 else 0.3))
     add(pianoR, 56.5 + i * 0.22, sig * 0.2 * (0.3 if i % 2 else 0.7))
@@ -227,9 +250,10 @@ gain = 10 ** (-3 / 20) / peak
 stereo = np.stack([L, R], axis=1) * gain
 
 os.makedirs(os.path.join(ROOT, 'sfx'), exist_ok=True)
-wavfile.write(os.path.join(ROOT, 'musique.wav'), SR, (stereo * 32767).astype(np.int16))
+MUSIC_NAME = 'musique_pont.wav' if VARIANT == 'pont' else 'musique.wav'
+wavfile.write(os.path.join(ROOT, MUSIC_NAME), SR, (stereo * 32767).astype(np.int16))
 rms = 20 * np.log10(np.sqrt(np.mean(stereo ** 2)))
-print(f'musique.wav : {DUR:.1f} s, crête -3 dBFS, niveau moyen {rms:.1f} dBFS')
+print(f'{MUSIC_NAME} : {DUR:.1f} s, crête -3 dBFS, niveau moyen {rms:.1f} dBFS')
 
 
 # ---------------------------------------------------------------- Effets sonores
@@ -275,3 +299,12 @@ for i in range(Lw):
     out[i] = y
 envw = np.sin(np.pi * np.clip(t / 1.4, 0, 1)) ** 2
 save_sfx('whoosh', with_reverb(out * envw, 0.3))
+
+# Clic métallique du cadenas qui se ferme.
+t = np.arange(int(0.6 * SR)) / SR
+click = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t * d) for f, a, d in [(2400, 1, 60), (3900, 0.6, 80), (1250, 0.5, 35)])
+click += rng.normal(0, 1, len(t)) * np.exp(-t * 300) * 0.5
+click2 = np.zeros_like(click)
+off = int(0.06 * SR)
+click2[off:] = click[:-off] * 0.5
+save_sfx('click', with_reverb(click + click2, 0.25))

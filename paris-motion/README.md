@@ -70,3 +70,14 @@ src/
 scripts/                    musique, voix guide, export
 narration/                  script de voix off, sous-titres .srt, texte .json
 ```
+
+---
+
+# Deuxième vidéo : « Le pont des Arts » (60 s)
+Composition `PontDesArts` (code dans `src/pont/`). Même style et même découpage en 6 scènes : histoire (1804),
+effondrement et reconstruction (1979 → 1984, 9 → 7 arches), cadenas d'amour, 45 tonnes et retrait (2014-2015), aujourd'hui.
+
+- Texte de la voix off, temps et pas-à-pas CapCut : `narration/PONT_DES_ARTS_CapCut.md`
+- Vidéos : `out/pont-des-arts_musique.mp4` (musique baissée sous la voix), `out/pont-des-arts_sans-son.mp4`, musique seule `out/pont-des-arts_musique-seule.wav`
+- Regénérer la musique : `python3 scripts/generate_music.py pont`
+- Exporter : `npx remotion render src/index.ts PontDesArts out/pont-des-arts_musique.mp4`
