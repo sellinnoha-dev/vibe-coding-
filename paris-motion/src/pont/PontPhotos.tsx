@@ -22,12 +22,31 @@ const PhotoLayer: React.FC<{f: number}> = ({f}) => (
       const z = lerp(p.zoom[0], p.zoom[1], t);
       const px = lerp(p.pan[0][0], p.pan[1][0], t);
       const py = lerp(p.pan[0][1], p.pan[1][1], t);
+      const src = staticFile(`photos/pont/${p.file}`);
+      if (p.mode === 'card') {
+        const h = p.cardH ?? 480;
+        const enter = prog(f, p.from, p.from + 34, easeOut);
+        const gold = p.frame === 'gold';
+        return (
+          <AbsoluteFill key={p.file + i} style={{opacity: fadeIn}}>
+            <Img src={staticFile(`photos/pont/${p.file.replace('.jpg', '-flou.jpg')}`)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.04 + 0.04 * t})`}} />
+            <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(11,26,51,0.7), rgba(11,26,51,0.5))'}} />
+            <div style={{position: 'absolute', left: '50%', top: p.cardY ?? 560, transform: `translate(-50%, -50%) translateY(${(1 - enter) * 40}px) rotate(${(p.rot ?? 0) * enter}deg) scale(${lerp(0.94, 1, enter) * z})`}}>
+              <div style={{padding: gold ? 18 : 14, paddingBottom: gold ? 18 : 14, background: gold ? 'linear-gradient(135deg, #8A6A2E, #E8C77E 45%, #9C7A38)' : '#FAF6EE', borderRadius: 4, boxShadow: '0 30px 70px rgba(0,0,0,0.55)'}}>
+                <Img src={src} style={{display: 'block', height: h, width: 'auto', boxShadow: gold ? 'inset 0 0 0 2px rgba(0,0,0,0.3)' : undefined}} />
+              </div>
+              {p.legend && (
+                <div style={{position: 'absolute', left: '50%', top: '100%', transform: 'translateX(-50%)', marginTop: 16, width: 900, textAlign: 'center', fontFamily: FONT_TITLE, fontStyle: 'italic', fontSize: 25, color: C.goldLight, opacity: prog(f, p.from + 30, p.from + 50), textShadow: '0 2px 10px rgba(0,0,0,0.6)'}}>
+                  {p.legend}
+                </div>
+              )}
+            </div>
+          </AbsoluteFill>
+        );
+      }
       return (
-        <AbsoluteFill key={p.file} style={{opacity: fadeIn}}>
-          <Img
-            src={staticFile(`photos/pont/${p.file}`)}
-            style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${z}) translate(${px}%, ${py}%)`}}
-          />
+        <AbsoluteFill key={p.file + i} style={{opacity: fadeIn}}>
+          <Img src={src} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${z}) translate(${px}%, ${py}%)`}} />
           {p.credit && (
             <div style={{position: 'absolute', right: 22, bottom: 16, fontFamily: FONT_TEXT, fontSize: 15, color: 'rgba(255,255,255,0.75)', textShadow: '0 1px 3px rgba(0,0,0,0.8)'}}>
               {p.credit}
@@ -45,7 +64,9 @@ const Shades: React.FC<{f: number}> = ({f}) => {
   const outro = prog(f, 1630, 1680);
   return (
     <>
-      <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(11,26,51,0.72) 0%, rgba(11,26,51,0.15) 34%, rgba(11,26,51,0) 55%, rgba(11,26,51,0.55) 100%)'}} />
+      <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(11,26,51,0.78) 0%, rgba(11,26,51,0.3) 34%, rgba(11,26,51,0) 55%, rgba(11,26,51,0.55) 100%)'}} />
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse 900px 420px at 0% 0%, rgba(11,26,51,0.8) 0%, rgba(11,26,51,0) 100%)'}} />
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse 700px 360px at 100% 0%, rgba(11,26,51,0.7) 0%, rgba(11,26,51,0) 100%)'}} />
       <AbsoluteFill style={{background: `linear-gradient(90deg, rgba(11,26,51,0.85) 0%, rgba(11,26,51,0.35) 60%, rgba(11,26,51,0.1) 100%)`, opacity: intro}} />
       <AbsoluteFill style={{background: 'rgba(11,26,51,0.45)', opacity: outro}} />
     </>

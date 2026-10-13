@@ -1,3 +1,13 @@
+# Version « vraies photos » — état actuel
+
+✅ Vidéo rendue : `out/pont-des-arts_photos.mp4` (avec musique) et `out/pont-des-arts_photos_sans-son.mp4`.
+Photos fournies par Noha, intégrées dans `public/photos/pont/`. À citer dans ta bibliographie / ton oral :
+- Le tableau est **« Le Pont-Neuf » d'Auguste Renoir (1872)**, domaine public (National Gallery of Art, Washington). Ce n'est pas le pont des Arts : la légende à l'écran le précise.
+- Photo des panneaux de verre : © Véronique Meflah (crédit affiché à l'écran).
+- Autres photos : note le site d'où tu les as prises pour les citer.
+
+---
+
 # Version « vraies photos » — les 8 photos à trouver
 
 Dépose-les dans `public/photos/pont/` avec **exactement** ces noms (les images actuelles marquées « PHOTO À AJOUTER » sont provisoires),
