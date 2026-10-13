@@ -1,0 +1,25 @@
+{
+  "name": "paris-motion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Motion design scolaire — « Paris, une ville qui me fait rêver » (60 s, 1920x1080, 30 fps)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio": "python3 scripts/generate_music.py",
+    "voix-guide": "python3 scripts/generate_voice_guide.py",
+    "render": "bash scripts/render.sh"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "5.2.5",
+    "@fontsource/playfair-display": "5.2.5",
+    "@remotion/cli": "4.0.535",
+    "@remotion/fonts": "4.0.535",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.535"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}

@@ -1,0 +1,29 @@
+1
+00:00:00,800 --> 00:00:05,600
+Parmi toutes les villes de France,
+il y en a une qui me fait rêver : Paris.
+
+2
+00:00:06,500 --> 00:00:16,000
+D'abord, il y a ses monuments. La tour Eiffel et l'Arc de Triomphe
+rendent la ville unique : on la reconnaît au premier regard.
+
+3
+00:00:17,500 --> 00:00:28,000
+J'aime aussi son architecture : ses immeubles haussmanniens,
+ses rues élégantes, et les quais de la Seine.
+
+4
+00:00:29,500 --> 00:00:40,000
+Mais ce que je préfère, c'est son ambiance. Surtout le soir,
+quand les lumières s'allument et se reflètent dans la Seine.
+
+5
+00:00:41,500 --> 00:00:51,300
+Paris est aussi une ville de culture : musées, cafés, librairies, spectacles.
+Chaque quartier a son caractère, et il y a toujours quelque chose à découvrir.
+
+6
+00:00:52,400 --> 00:00:59,000
+Entre histoire, beauté et modernité, Paris est bien plus
+qu'une ville : c'est une atmosphère unique.
