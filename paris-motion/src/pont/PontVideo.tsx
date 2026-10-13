@@ -249,6 +249,55 @@ const World: React.FC<{f: number}> = ({f}) => {
   );
 };
 
+// ---------------------------------------------------------------- Phrases explicatives (bas de l'écran)
+export const CAPTIONS: {from: number; to: number; text: string}[] = [
+  {from: 92, to: 176, text: "Une passerelle pour piétons qui relie le Louvre à l'Institut de France."},
+  {from: 200, to: 330, text: 'Il est construit entre 1801 et 1804, sous Napoléon Bonaparte.'},
+  {from: 336, to: 505, text: 'Premier pont métallique de Paris, il doit son nom au Louvre, appelé à l’époque « palais des Arts ».'},
+  {from: 525, to: 645, text: 'Au fil du temps, les bombardements et les chocs de bateaux fragilisent le pont.'},
+  {from: 651, to: 760, text: 'En 1979, une barge heurte une pile : une partie du pont s’effondre dans la Seine.'},
+  {from: 766, to: 875, text: 'Reconstruit de 1981 à 1984, il n’a plus que 7 arches, alignées sur celles du Pont-Neuf voisin.'},
+  {from: 895, to: 1030, text: 'À la fin des années 2000, les couples commencent à y accrocher des cadenas.'},
+  {from: 1036, to: 1120, text: 'Ils y écrivent leurs prénoms : un symbole d’amour « verrouillé » pour toujours.'},
+  {from: 1126, to: 1235, text: 'La clé est jetée dans la Seine, pour que personne ne puisse ouvrir le cadenas.'},
+  {from: 1250, to: 1370, text: 'Près d’un million de cadenas : 45 tonnes, le poids d’une trentaine de voitures.'},
+  {from: 1376, to: 1450, text: 'En juin 2014, un panneau du grillage s’affaisse sous ce poids.'},
+  {from: 1456, to: 1560, text: 'En 2015, la Ville retire tous les cadenas et installe des panneaux de verre.'},
+  {from: 1585, to: 1735, text: 'En 2017, une partie des cadenas est vendue aux enchères au profit de l’aide aux réfugiés.'},
+];
+
+const Captions: React.FC<{f: number}> = ({f}) => (
+  <>
+    {CAPTIONS.map((c, i) => {
+      if (f < c.from - 1 || f > c.to + 1) return null;
+      const a = prog(f, c.from, c.from + 14, easeOut);
+      const b = prog(f, c.to - 12, c.to);
+      return (
+        <div key={i} style={{position: 'absolute', left: 0, right: 0, bottom: 64, display: 'flex', justifyContent: 'center', opacity: a * (1 - b), transform: `translateY(${(1 - a) * 14}px)`}}>
+          <div
+            style={{
+              maxWidth: 1240,
+              padding: '16px 34px',
+              borderRadius: 14,
+              background: 'rgba(11,26,51,0.74)',
+              borderLeft: `4px solid ${C.gold}`,
+              fontFamily: FONT_TEXT,
+              fontWeight: 500,
+              fontSize: 31,
+              lineHeight: 1.35,
+              color: C.cream,
+              textAlign: 'center',
+              textWrap: 'balance',
+            } as React.CSSProperties}
+          >
+            {c.text}
+          </div>
+        </div>
+      );
+    })}
+  </>
+);
+
 // ---------------------------------------------------------------- Textes
 const Texts: React.FC<{f: number}> = ({f}) => {
   const night = prog(f, 1235, 1262);
@@ -263,6 +312,7 @@ const Texts: React.FC<{f: number}> = ({f}) => {
       <SceneHeading frame={f} start={965} end={1228} kicker="03 — Les cadenas d'amour" lines={['Un cadenas, deux prénoms,', 'une clé dans la Seine']} kickerColor={C.navy} />
       <SceneHeading frame={f} start={1258} end={1545} kicker="04 — Le poids de l'amour" lines={['Un amour', 'un peu trop lourd']} color={C.cream} kickerColor={C.goldLight} />
       <StatBox f={f} night={night} />
+      <Captions f={f} />
       {/* Message final */}
       <div style={{position: 'absolute', left: 0, right: 0, top: 150, textAlign: 'center', opacity: 1 - prog(f, 1760, 1792)}}>
         <div style={{overflow: 'hidden'}}>

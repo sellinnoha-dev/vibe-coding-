@@ -16,14 +16,32 @@ Autres fichiers : `out/pont-des-arts_sans-son.mp4` (image seule) + `out/pont-des
 
 Prononciation : « 1804 » = dix-huit cent quatre ; « 1979 » = dix-neuf cent soixante-dix-neuf ; « 1984 » = dix-neuf cent quatre-vingt-quatre.
 
+## Les phrases explicatives affichées en bas de l'écran (déjà dans la vidéo)
+| Temps | Phrase |
+|---|---|
+| 0:03 | Une passerelle pour piétons qui relie le Louvre à l'Institut de France. |
+| 0:07 | Il est construit entre 1801 et 1804, sous Napoléon Bonaparte. |
+| 0:11 | Premier pont métallique de Paris, il doit son nom au Louvre, appelé à l'époque « palais des Arts ». |
+| 0:17 | Au fil du temps, les bombardements et les chocs de bateaux fragilisent le pont. |
+| 0:22 | En 1979, une barge heurte une pile : une partie du pont s'effondre dans la Seine. |
+| 0:26 | Reconstruit de 1981 à 1984, il n'a plus que 7 arches, alignées sur celles du Pont-Neuf voisin. |
+| 0:30 | À la fin des années 2000, les couples commencent à y accrocher des cadenas. |
+| 0:35 | Ils y écrivent leurs prénoms : un symbole d'amour « verrouillé » pour toujours. |
+| 0:38 | La clé est jetée dans la Seine, pour que personne ne puisse ouvrir le cadenas. |
+| 0:42 | Près d'un million de cadenas : 45 tonnes, le poids d'une trentaine de voitures. |
+| 0:46 | En juin 2014, un panneau du grillage s'affaisse sous ce poids. |
+| 0:49 | En 2015, la Ville retire tous les cadenas et installe des panneaux de verre. |
+| 0:53 | En 2017, une partie des cadenas est vendue aux enchères au profit de l'aide aux réfugiés. |
+
+Ces phrases complètent ta voix : tu n'as pas besoin de les lire. N'ajoute pas les sous-titres automatiques de CapCut, ils se superposeraient à ces phrases.
+
 ## Dans CapCut (téléphone ou PC)
 1. **Nouveau projet** → importe `pont-des-arts_musique.mp4`.
 2. Place le curseur blanc à **0:01** → bouton **Audio** → **Voix off** (micro) → enregistre la phrase 1.
 3. Recommence pour chaque phrase en plaçant le curseur au temps « Commence à » du tableau.
 4. Si une phrase dépasse : refais-la un peu plus vite, ou sélectionne le clip voix → **Vitesse** → 1,1×.
 5. Sélectionne chaque clip voix → **Volume** à 100–150 % ; la vidéo (musique) peut rester à 100 %.
-6. Facultatif : **Texte → Sous-titres automatiques** pour afficher tes paroles.
-7. **Exporter** en 1080p, 30 i/s.
+6. **Exporter** en 1080p, 30 i/s.
 
 ## Si le prof te pose des questions (à savoir, pas forcément à dire)
 - Le pont est construit de 1801 à 1804 ; c'est le premier pont métallique de Paris (en fonte), réservé aux piétons.
